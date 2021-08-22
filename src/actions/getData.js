@@ -7,13 +7,6 @@ function setData(data) {
   };
 }
 
-function addEngineer(name) {
-  return {
-    type: "ADD_ENGINEER",
-    name,
-  };
-}
-
 export function getData(data) {
   return (dispatch) => {
     dispatch(setData(data));

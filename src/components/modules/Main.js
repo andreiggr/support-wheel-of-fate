@@ -39,6 +39,7 @@ const generateDaysObject = (start, end, items) => {
 const Main = ({ handleSetData, handleSetEngineers, engineers }) => {
   useEffect(() => {
     if (!engineers) {
+      console.log("going");
       handleSetEngineers(mockEng);
     }
     const startDate = new Date();
