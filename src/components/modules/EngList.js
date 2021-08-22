@@ -35,7 +35,7 @@ const Engineer = ({ engineer, handleEdit, handleDelete }) => {
       )}
       <Control>
         <EditButton onClick={() => setEdit(!edit)} src={iconEdit} />
-        <DeleteButton onClick={() => handleDelete(e)} src={iconDelete} />
+        <DeleteButton onClick={() => handleDelete()} src={iconDelete} />
       </Control>
     </EngineerCard>
   );
@@ -54,8 +54,8 @@ const EngList = ({
     }
   };
 
-  const handleDeleteEngineer = (engineer) => {
-    deleteEngineer(engineer);
+  const handleDeleteEngineer = (e) => {
+    deleteEngineer(e);
   };
 
   const handleEditEngineer = (engineer, newName) => {
@@ -70,7 +70,7 @@ const EngList = ({
               key={i}
               engineer={e}
               handleEdit={(value) => handleEditEngineer(e, value)}
-              handleDelete={handleDeleteEngineer}
+              handleDelete={() => handleDeleteEngineer(e)}
             />
           ))}
       </ListContainer>
