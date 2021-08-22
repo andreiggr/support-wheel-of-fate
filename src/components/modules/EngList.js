@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { Image, View } from "../blocks";
 import engineers from "../../utils/mockData";
 import HelmetIcon from "../../assets/helmet.svg";
+import { connect } from "react-redux";
 
-const EngList = () => {
+const EngList = ({ engineers }) => {
   return (
     <ListContainer>
       {engineers &&
@@ -18,7 +19,16 @@ const EngList = () => {
   );
 };
 
-export default EngList;
+const mapStateToProps = (state) => {
+  return {
+    engineers: state.engineers,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(EngList);
 
 const Icon = styled(Image)`
   height: 30px;
