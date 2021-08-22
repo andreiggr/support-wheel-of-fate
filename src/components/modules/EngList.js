@@ -31,7 +31,7 @@ const Engineer = ({ engineer, handleEdit, handleDelete }) => {
           <button onClick={() => handleEditAction()}>Ok</button>
         </View>
       ) : (
-        <Title>{engineer.name}</Title>
+        <Title href={`engineer/${engineer.name}`}>{engineer.name}</Title>
       )}
       <Control>
         <EditButton onClick={() => setEdit(!edit)} src={iconEdit} />
@@ -142,9 +142,17 @@ const Icon = styled(Image)`
   margin-right: 10px;
 `;
 
-const Title = styled.p`
+const Title = styled.a`
   font-size: 18px;
   font-weight: bold;
+  color: #4078b3;
+
+  text-decoration: none;
+  margin: 15px 0;
+
+  :hover{
+    color: darkblue;
+  }
 `;
 
 const ListContainer = styled(View)`
@@ -172,9 +180,4 @@ const EngineerCard = styled(View)`
   margin: 5px;
 
   border-radius: 5px;
-
-  :hover {
-    background-color: #4078b3;
-    color: white;
-  }
 `;
