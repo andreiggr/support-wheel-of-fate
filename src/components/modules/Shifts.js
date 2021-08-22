@@ -4,31 +4,31 @@ import { View } from "../blocks";
 import engineers from "../../utils/mockData";
 import Calendar from "react-calendar";
 
+const assignEngineers = (engineers, yesterdayItems) => {
+  const engineerPool =
+    yesterdayItems && yesterdayItems.length > 0
+      ? engineers.filter((e) => !yesterdayItems.includes(e))
+      : engineers;
+  const randomPair = engineerPool.sort(() => 0.5 - Math.random()).slice(0, 2);
+
+  return randomPair;
+};
+
 const generateDaysObject = (start, end, items) => {
   var days = {};
   const today = new Date();
   var dt = new Date(start);
   var endDate = new Date(end);
 
-  const assignEngineers = (engineers, yesterdayItems) => {
-    const engineerPool =
-      yesterdayItems && yesterdayItems.length > 0
-        ? engineers.filter((e) => !yesterdayItems.includes(e))
-        : engineers;
-    const randomPair = engineers.sort(() => 0.5 - Math.random()).slice(0, 2);
-    return randomPair;
-  };
-
   while (dt <= endDate) {
     const noYesterday = today.getDate() === dt.getDate();
+    var daybefore = new Date(dt);
+    daybefore.setDate(daybefore.getDate() - 1);
 
-    // var assignedEng = noYesterday
-    //   ? assignEngineers(items)
-    //   : assignEngineers(
-    //       items,
-    //       days[`${new Date(dt.setDate(dt.getDate() - 1))}`]
-    //     );
-    var assignedEng = assignEngineers(items);
+    var assignedEng = noYesterday
+      ? assignEngineers(items)
+      : assignEngineers(items, days[daybefore.toLocaleDateString()]);
+    //var assignedEng = assignEngineers(items);
     var formatDate = new Date(dt).toLocaleDateString();
     days = { ...days, [formatDate]: assignedEng };
     dt.setDate(dt.getDate() + 1);
@@ -46,7 +46,6 @@ const Shifts = () => {
 
   const datesObj = generateDaysObject(startDate, endDate, engineers);
 
-  console.log("dates", datesObj);
   const handleClickDay = (e) => {
     console.log(e, "will show the 2 workers today");
   };
