@@ -7,27 +7,23 @@ Empty project.
 First install dependencies:
 
 ```sh
-npm install
+yarn
 ```
 
 To run in hot module reloading mode:
 
 ```sh
-npm start
+yarn start
 ```
 
 To create a production build:
 
 ```sh
-npm run build-prod
+yarn run build-prod
 ```
 
 ## Running
 
 Open the file `dist/index.html` in your browser
-
-## Credits
-
-Made with [createapp.dev](https://createapp.dev/)
 
 # support-wheel-of-fate
